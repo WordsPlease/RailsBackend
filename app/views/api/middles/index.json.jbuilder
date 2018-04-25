@@ -1,3 +1,5 @@
 @middles.each do |middle|
-  json.partial! 'api/middles/middle', middle: middle
+  json.set! middle.id do
+    json.partial! 'api/middles/middle', middle: middle
+  end
 end

@@ -41,9 +41,9 @@ nnn = Middle.create(title: "to play", is_last: false, image_path: "", starter_id
 aaaa = Finisher.create(title: "an apple", is_last: true, image_path: "", middle_id: mmm.id)
 bbbb = Finisher.create(title: "carrots", is_last: true, image_path: "", middle_id: mmm.id)
 # to play finishers
-cccc = Finisher.create(title: "with blocks", is_last: true, image_path: "", middle_id: mmm.id)
-dddd = Finisher.create(title: "with sand", is_last: true, image_path: "", middle_id: mmm.id)
-eeee = Finisher.create(title: "tag", is_last: true, image_path: "", middle_id: mmm.id)
+cccc = Finisher.create(title: "with blocks", is_last: true, image_path: "", middle_id: nnn.id)
+dddd = Finisher.create(title: "with sand", is_last: true, image_path: "", middle_id: nnn.id)
+eeee = Finisher.create(title: "tag", is_last: true, image_path: "", middle_id: nnn.id)
 
 # settings join table
 aaaaa = SettingMembership.create(setting_id: a.id,finisher_id: aaaa.id)

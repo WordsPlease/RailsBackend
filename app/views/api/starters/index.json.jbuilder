@@ -1,3 +1,6 @@
+
 @starters.each do |starter|
-  json.partial! 'api/starters/starter', starter: starter
+  json.set! starter.id do
+    json.partial! 'api/starters/starter', starter: starter
+  end
 end
