@@ -1,1 +1,1 @@
-json.extract! @setting, :id, :title, :image_path
+json.extract! @setting, :id, :title, :image_path, :finishers

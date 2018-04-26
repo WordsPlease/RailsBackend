@@ -1022,3 +1022,762 @@ Processing by Api::SettingsController#show as JSON
 Completed 200 OK in 42ms (Views: 3.4ms | ActiveRecord: 9.1ms)
 
 
+Started GET "/" for 127.0.0.1 at 2018-04-25 17:05:02 -0700
+
+PG::ConnectionBad - FATAL:  database "words-please_development" does not exist
+:
+
+Started POST "/__better_errors/047de01dc5e5f3ab/variables" for 127.0.0.1 at 2018-04-25 17:05:03 -0700
+Started GET "/" for 127.0.0.1 at 2018-04-25 17:05:08 -0700
+
+PG::ConnectionBad - FATAL:  database "words-please_development" does not exist
+:
+
+Started POST "/__better_errors/f0af1af45e6ac333/variables" for 127.0.0.1 at 2018-04-25 17:05:08 -0700
+Started GET "/" for 127.0.0.1 at 2018-04-25 17:05:44 -0700
+
+ActiveRecord::PendingMigrationError - Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+:
+
+Started POST "/__better_errors/9113e55f6e5f01d8/variables" for 127.0.0.1 at 2018-04-25 17:05:44 -0700
+  [1m[35m (31.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (16.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4093412356168914870)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateSettings (20180423183520)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (21.6ms)[0m  [1m[35mCREATE TABLE "settings" ("id" bigserial primary key, "title" character varying NOT NULL, "image_path" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180423183520"]]
+  [1m[35m (8.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateStarters (20180423183747)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (16.0ms)[0m  [1m[35mCREATE TABLE "starters" ("id" bigserial primary key, "title" character varying NOT NULL, "is_last" character varying NOT NULL, "image_path" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180423183747"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateMiddles (20180423184855)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (21.0ms)[0m  [1m[35mCREATE TABLE "middles" ("id" bigserial primary key, "title" character varying NOT NULL, "is_last" character varying NOT NULL, "image_path" character varying, "starter_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180423184855"]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateFinishers (20180423185137)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (15.5ms)[0m  [1m[35mCREATE TABLE "finishers" ("id" bigserial primary key, "title" character varying NOT NULL, "is_last" character varying NOT NULL, "image_path" character varying, "setting_memberships_id" integer NOT NULL, "middle_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180423185137"]]
+  [1m[35m (7.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateSettingMemberships (20180423185445)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE TABLE "setting_memberships" ("id" bigserial primary key, "setting_id" integer NOT NULL, "finisher_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180423185445"]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to DeleteMembershipsColumn (20180424002056)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "finishers" DROP "setting_memberships_id"[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180424002056"]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-04-26 00:05:54.400474"], ["updated_at", "2018-04-26 00:05:54.400474"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4093412356168914870)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2018-04-25 17:05:59 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/dondake/.rbenv/versions/2.3.0-dev/lib/ruby/gems/2.6.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/dondake/.rbenv/versions/2.3.0-dev/lib/ruby/gems/2.6.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb (1.7ms)
+Completed 200 OK in 10ms (Views: 4.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-04-25 17:06:01 -0700
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/dondake/.rbenv/versions/2.3.0-dev/lib/ruby/gems/2.6.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/dondake/.rbenv/versions/2.3.0-dev/lib/ruby/gems/2.6.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb (1.2ms)
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-04-25 17:06:04 -0700
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/dondake/.rbenv/versions/2.3.0-dev/lib/ruby/gems/2.6.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/dondake/.rbenv/versions/2.3.0-dev/lib/ruby/gems/2.6.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb (1.2ms)
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api" for 127.0.0.1 at 2018-04-25 17:06:20 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/api"):
+  
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.6.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.1) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.1) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.1) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.11.4) lib/puma/configuration.rb:225:in `call'
+puma (3.11.4) lib/puma/server.rb:632:in `handle_request'
+puma (3.11.4) lib/puma/server.rb:446:in `process_client'
+puma (3.11.4) lib/puma/server.rb:306:in `block in run'
+puma (3.11.4) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/api/setting" for 127.0.0.1 at 2018-04-25 17:06:26 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/api/setting"):
+  
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.6.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.1) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.1) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.1) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.11.4) lib/puma/configuration.rb:225:in `call'
+puma (3.11.4) lib/puma/server.rb:632:in `handle_request'
+puma (3.11.4) lib/puma/server.rb:446:in `process_client'
+puma (3.11.4) lib/puma/server.rb:306:in `block in run'
+puma (3.11.4) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/api/settings" for 127.0.0.1 at 2018-04-25 17:06:33 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/api/settings"):
+  
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.6.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.1) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.1) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.1) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.11.4) lib/puma/configuration.rb:225:in `call'
+puma (3.11.4) lib/puma/server.rb:632:in `handle_request'
+puma (3.11.4) lib/puma/server.rb:446:in `process_client'
+puma (3.11.4) lib/puma/server.rb:306:in `block in run'
+puma (3.11.4) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/api/settings/1" for 127.0.0.1 at 2018-04-25 17:06:37 -0700
+Processing by Api::SettingsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSetting Load (0.3ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 404 Not Found in 19ms (ActiveRecord: 3.4ms)
+
+
+
+ActiveRecord::RecordNotFound - Couldn't find Setting with 'id'=1:
+  app/controllers/api/settings_controller.rb:3:in `show'
+
+Started POST "/__better_errors/19cbf6c11df22d71/variables" for 127.0.0.1 at 2018-04-25 17:06:37 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "settings" WHERE "settings"."title" = $1 LIMIT $2[0m  [["title", "classroom"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "settings" ("title", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "classroom"], ["image_path", "https://res.cloudinary.com/do2qcwqsc/image/upload/v1523565827/kd6auoy8bzdkwrrcihlp.jpg"], ["created_at", "2018-04-26 00:09:20.777383"], ["updated_at", "2018-04-26 00:09:20.777383"]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "settings" WHERE "settings"."title" = $1 LIMIT $2[0m  [["title", "playground"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "settings" ("title", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "playground"], ["image_path", "https://res.cloudinary.com/do2qcwqsc/image/upload/v1523484628/uwoqkq1hpu3rjws3yieo.jpg"], ["created_at", "2018-04-26 00:09:20.781374"], ["updated_at", "2018-04-26 00:09:20.781374"]]
+  [1m[35m (8.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "settings" WHERE "settings"."title" = $1 LIMIT $2[0m  [["title", "home"], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "settings" ("title", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "home"], ["image_path", "https://res.cloudinary.com/do2qcwqsc/image/upload/v1523566364/lyztggx4yiu2mvtq00pi.png"], ["created_at", "2018-04-26 00:09:20.791554"], ["updated_at", "2018-04-26 00:09:20.791554"]]
+  [1m[35m (8.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "I feel"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "starters" ("title", "is_last", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "I feel"], ["is_last", "f"], ["image_path", ""], ["created_at", "2018-04-26 00:09:20.809899"], ["updated_at", "2018-04-26 00:09:20.809899"]]
+  [1m[35m (7.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "I want"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "starters" ("title", "is_last", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "I want"], ["is_last", "f"], ["image_path", ""], ["created_at", "2018-04-26 00:09:20.820067"], ["updated_at", "2018-04-26 00:09:20.820067"]]
+  [1m[35m (8.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "Yes"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "starters" ("title", "is_last", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Yes"], ["is_last", "t"], ["image_path", ""], ["created_at", "2018-04-26 00:09:20.830374"], ["updated_at", "2018-04-26 00:09:20.830374"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "No"], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "starters" ("title", "is_last", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "No"], ["is_last", "t"], ["image_path", ""], ["created_at", "2018-04-26 00:09:20.834651"], ["updated_at", "2018-04-26 00:09:20.834651"]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "Thank You"], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "starters" ("title", "is_last", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Thank You"], ["is_last", "t"], ["image_path", ""], ["created_at", "2018-04-26 00:09:20.838842"], ["updated_at", "2018-04-26 00:09:20.838842"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "Help"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "starters" ("title", "is_last", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Help"], ["is_last", "t"], ["image_path", ""], ["created_at", "2018-04-26 00:09:20.843142"], ["updated_at", "2018-04-26 00:09:20.843142"]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "Stop"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "starters" ("title", "is_last", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Stop"], ["is_last", "t"], ["image_path", ""], ["created_at", "2018-04-26 00:09:20.847297"], ["updated_at", "2018-04-26 00:09:20.847297"]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "I don't know"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "starters" ("title", "is_last", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "I don't know"], ["is_last", "t"], ["image_path", ""], ["created_at", "2018-04-26 00:09:20.851516"], ["updated_at", "2018-04-26 00:09:20.851516"]]
+  [1m[35m (8.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "happy"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.2ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "happy"], ["is_last", "t"], ["image_path", ""], ["starter_id", 1], ["created_at", "2018-04-26 00:09:20.879486"], ["updated_at", "2018-04-26 00:09:20.879486"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "sad"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.3ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "sad"], ["is_last", "t"], ["image_path", ""], ["starter_id", 1], ["created_at", "2018-04-26 00:09:20.884735"], ["updated_at", "2018-04-26 00:09:20.884735"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "mad"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.3ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "mad"], ["is_last", "t"], ["image_path", ""], ["starter_id", 1], ["created_at", "2018-04-26 00:09:20.889090"], ["updated_at", "2018-04-26 00:09:20.889090"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "sleepy"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.3ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "sleepy"], ["is_last", "t"], ["image_path", ""], ["starter_id", 1], ["created_at", "2018-04-26 00:09:20.893530"], ["updated_at", "2018-04-26 00:09:20.893530"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "hungry"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.2ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "hungry"], ["is_last", "t"], ["image_path", ""], ["starter_id", 1], ["created_at", "2018-04-26 00:09:20.897877"], ["updated_at", "2018-04-26 00:09:20.897877"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "thirsty"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.2ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "thirsty"], ["is_last", "t"], ["image_path", ""], ["starter_id", 1], ["created_at", "2018-04-26 00:09:20.902178"], ["updated_at", "2018-04-26 00:09:20.902178"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "hyper"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.2ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "hyper"], ["is_last", "t"], ["image_path", ""], ["starter_id", 1], ["created_at", "2018-04-26 00:09:20.906449"], ["updated_at", "2018-04-26 00:09:20.906449"]]
+  [1m[35m (14.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "bored"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.3ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "bored"], ["is_last", "t"], ["image_path", ""], ["starter_id", 1], ["created_at", "2018-04-26 00:09:20.923917"], ["updated_at", "2018-04-26 00:09:20.923917"]]
+  [1m[35m (8.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "hot"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.2ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "hot"], ["is_last", "t"], ["image_path", ""], ["starter_id", 1], ["created_at", "2018-04-26 00:09:20.935258"], ["updated_at", "2018-04-26 00:09:20.935258"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "cold"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.3ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "cold"], ["is_last", "t"], ["image_path", ""], ["starter_id", 1], ["created_at", "2018-04-26 00:09:20.940397"], ["updated_at", "2018-04-26 00:09:20.940397"]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "scared"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.2ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "scared"], ["is_last", "t"], ["image_path", ""], ["starter_id", 1], ["created_at", "2018-04-26 00:09:20.945487"], ["updated_at", "2018-04-26 00:09:20.945487"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "hurt"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.3ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "hurt"], ["is_last", "t"], ["image_path", ""], ["starter_id", 1], ["created_at", "2018-04-26 00:09:20.949959"], ["updated_at", "2018-04-26 00:09:20.949959"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "to eat"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.3ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "to eat"], ["is_last", "f"], ["image_path", ""], ["starter_id", 2], ["created_at", "2018-04-26 00:09:20.954323"], ["updated_at", "2018-04-26 00:09:20.954323"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "to play"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.3ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "to play"], ["is_last", "f"], ["image_path", ""], ["starter_id", 2], ["created_at", "2018-04-26 00:09:20.958762"], ["updated_at", "2018-04-26 00:09:20.958762"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFinisher Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "finishers" WHERE "finishers"."title" = $1 LIMIT $2[0m  [["title", "an apple"], ["LIMIT", 1]]
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "an apple"], ["is_last", "t"], ["image_path", ""], ["middle_id", 13], ["created_at", "2018-04-26 00:09:20.973877"], ["updated_at", "2018-04-26 00:09:20.973877"]]
+  [1m[35m (7.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFinisher Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "finishers" WHERE "finishers"."title" = $1 LIMIT $2[0m  [["title", "carrots"], ["LIMIT", 1]]
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "carrots"], ["is_last", "t"], ["image_path", ""], ["middle_id", 13], ["created_at", "2018-04-26 00:09:20.984524"], ["updated_at", "2018-04-26 00:09:20.984524"]]
+  [1m[35m (7.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFinisher Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "finishers" WHERE "finishers"."title" = $1 LIMIT $2[0m  [["title", "with blocks"], ["LIMIT", 1]]
+  [1m[36mMiddle Load (0.3ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "with blocks"], ["is_last", "t"], ["image_path", ""], ["middle_id", 14], ["created_at", "2018-04-26 00:09:20.994964"], ["updated_at", "2018-04-26 00:09:20.994964"]]
+  [1m[35m (7.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFinisher Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "finishers" WHERE "finishers"."title" = $1 LIMIT $2[0m  [["title", "with sand"], ["LIMIT", 1]]
+  [1m[36mMiddle Load (0.3ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "with sand"], ["is_last", "t"], ["image_path", ""], ["middle_id", 14], ["created_at", "2018-04-26 00:09:21.005922"], ["updated_at", "2018-04-26 00:09:21.005922"]]
+  [1m[35m (7.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFinisher Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "finishers" WHERE "finishers"."title" = $1 LIMIT $2[0m  [["title", "tag"], ["LIMIT", 1]]
+  [1m[36mMiddle Load (0.3ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "tag"], ["is_last", "t"], ["image_path", ""], ["middle_id", 14], ["created_at", "2018-04-26 00:09:21.017089"], ["updated_at", "2018-04-26 00:09:21.017089"]]
+  [1m[35m (8.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 1], ["created_at", "2018-04-26 00:09:21.037719"], ["updated_at", "2018-04-26 00:09:21.037719"]]
+  [1m[35m (10.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 2], ["created_at", "2018-04-26 00:09:21.051425"], ["updated_at", "2018-04-26 00:09:21.051425"]]
+  [1m[35m (13.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.3ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 3], ["created_at", "2018-04-26 00:09:21.068566"], ["updated_at", "2018-04-26 00:09:21.068566"]]
+  [1m[35m (9.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.3ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 4], ["created_at", "2018-04-26 00:09:21.081399"], ["updated_at", "2018-04-26 00:09:21.081399"]]
+  [1m[35m (6.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.3ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 5], ["created_at", "2018-04-26 00:09:21.091431"], ["updated_at", "2018-04-26 00:09:21.091431"]]
+  [1m[35m (7.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "settings" WHERE "settings"."title" = $1 LIMIT $2[0m  [["title", "classroom"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "settings" WHERE "settings"."title" = $1 LIMIT $2[0m  [["title", "playground"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "settings" WHERE "settings"."title" = $1 LIMIT $2[0m  [["title", "home"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "I feel"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "I want"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "Yes"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "No"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "Thank You"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "Help"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "Stop"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "I don't know"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "happy"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "sad"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "mad"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "sleepy"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "hungry"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "thirsty"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "hyper"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "bored"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "hot"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "cold"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "scared"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "hurt"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "to eat"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "to play"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFinisher Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "finishers" WHERE "finishers"."title" = $1 LIMIT $2[0m  [["title", "an apple"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFinisher Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "finishers" WHERE "finishers"."title" = $1 LIMIT $2[0m  [["title", "carrots"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFinisher Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "finishers" WHERE "finishers"."title" = $1 LIMIT $2[0m  [["title", "with blocks"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFinisher Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "finishers" WHERE "finishers"."title" = $1 LIMIT $2[0m  [["title", "with sand"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFinisher Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "finishers" WHERE "finishers"."title" = $1 LIMIT $2[0m  [["title", "tag"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+Started GET "/" for 127.0.0.1 at 2018-04-25 17:09:47 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/dondake/.rbenv/versions/2.3.0-dev/lib/ruby/gems/2.6.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/dondake/.rbenv/versions/2.3.0-dev/lib/ruby/gems/2.6.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb (1.5ms)
+Completed 200 OK in 8ms (Views: 3.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/settings/1" for 127.0.0.1 at 2018-04-25 17:09:52 -0700
+Processing by Api::SettingsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/settings/show.json.jbuilder
+  Rendered api/settings/show.json.jbuilder (1.9ms)
+Completed 200 OK in 22ms (Views: 3.2ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-04-25 22:11:45 -0700
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/dondake/.rbenv/versions/2.3.0-dev/lib/ruby/gems/2.6.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/dondake/.rbenv/versions/2.3.0-dev/lib/ruby/gems/2.6.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb (1.9ms)
+Completed 200 OK in 11ms (Views: 4.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/settings/1" for 127.0.0.1 at 2018-04-25 22:11:53 -0700
+Processing by Api::SettingsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSetting Load (0.7ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/settings/show.json.jbuilder
+  [1m[36mFinisher Load (1.2ms)[0m  [1m[34mSELECT "finishers".* FROM "finishers" INNER JOIN "setting_memberships" ON "finishers"."id" = "setting_memberships"."finisher_id" WHERE "setting_memberships"."setting_id" = $1[0m  [["setting_id", 1]]
+  Rendered api/settings/show.json.jbuilder (43.7ms)
+Completed 200 OK in 80ms (Views: 40.8ms | ActiveRecord: 13.1ms)
+
+
+Started GET "/api/starters" for 127.0.0.1 at 2018-04-25 22:12:35 -0700
+Processing by Api::StartersController#index as JSON
+  Rendering api/starters/index.json.jbuilder
+  [1m[36mStarter Load (23.0ms)[0m  [1m[34mSELECT "starters".* FROM "starters"[0m
+  Rendered api/starters/_starter.json.jbuilder (0.3ms)
+  Rendered api/starters/_starter.json.jbuilder (0.0ms)
+  Rendered api/starters/_starter.json.jbuilder (0.0ms)
+  Rendered api/starters/_starter.json.jbuilder (0.0ms)
+  Rendered api/starters/_starter.json.jbuilder (0.0ms)
+  Rendered api/starters/_starter.json.jbuilder (0.0ms)
+  Rendered api/starters/_starter.json.jbuilder (0.0ms)
+  Rendered api/starters/_starter.json.jbuilder (0.0ms)
+  Rendered api/starters/index.json.jbuilder (34.0ms)
+Completed 200 OK in 38ms (Views: 8.9ms | ActiveRecord: 26.5ms)
+
+
+Started GET "/api/middle" for 127.0.0.1 at 2018-04-25 22:13:02 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/api/middle"):
+  
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.6.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.1) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.1) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.1) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.11.4) lib/puma/configuration.rb:225:in `call'
+puma (3.11.4) lib/puma/server.rb:632:in `handle_request'
+puma (3.11.4) lib/puma/server.rb:446:in `process_client'
+puma (3.11.4) lib/puma/server.rb:306:in `block in run'
+puma (3.11.4) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/api/middles" for 127.0.0.1 at 2018-04-25 22:13:06 -0700
+Processing by Api::MiddlesController#index as JSON
+  Rendering api/middles/index.json.jbuilder
+  [1m[36mMiddle Load (9.6ms)[0m  [1m[34mSELECT "middles".* FROM "middles" WHERE "middles"."starter_id" IS NULL[0m
+  Rendered api/middles/index.json.jbuilder (12.4ms)
+Completed 200 OK in 19ms (Views: 4.0ms | ActiveRecord: 10.7ms)
+
+
+  [1m[36mMiddle Load (0.3ms)[0m  [1m[34mSELECT "middles".* FROM "middles"[0m
+Started GET "/api/middles/2" for 127.0.0.1 at 2018-04-25 22:16:54 -0700
+Processing by Api::MiddlesController#show as JSON
+  Parameters: {"id"=>"2"}
+  [1m[36mMiddle Load (0.3ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering api/middles/show.json.jbuilder
+  Rendered api/middles/_middle.json.jbuilder (0.3ms)
+  Rendered api/middles/show.json.jbuilder (1.0ms)
+Completed 200 OK in 11ms (Views: 2.3ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/middles" for 127.0.0.1 at 2018-04-25 22:20:27 -0700
+Processing by Api::MiddlesController#index as JSON
+  Rendering api/middles/index.json.jbuilder
+  [1m[36mMiddle Load (0.4ms)[0m  [1m[34mSELECT "middles".* FROM "middles"[0m
+  [1m[36mStarter Load (0.2ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered api/middles/_middle.json.jbuilder (11.7ms)
+  [1m[36mCACHE Starter Load (0.0ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered api/middles/_middle.json.jbuilder (0.8ms)
+  [1m[36mCACHE Starter Load (0.0ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered api/middles/_middle.json.jbuilder (0.7ms)
+  [1m[36mCACHE Starter Load (0.0ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered api/middles/_middle.json.jbuilder (0.5ms)
+  [1m[36mCACHE Starter Load (0.0ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered api/middles/_middle.json.jbuilder (0.5ms)
+  [1m[36mCACHE Starter Load (0.0ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered api/middles/_middle.json.jbuilder (0.4ms)
+  [1m[36mCACHE Starter Load (0.0ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered api/middles/_middle.json.jbuilder (0.4ms)
+  [1m[36mCACHE Starter Load (0.0ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered api/middles/_middle.json.jbuilder (0.4ms)
+  [1m[36mCACHE Starter Load (0.0ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered api/middles/_middle.json.jbuilder (0.6ms)
+  [1m[36mCACHE Starter Load (0.0ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered api/middles/_middle.json.jbuilder (0.7ms)
+  [1m[36mCACHE Starter Load (0.0ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered api/middles/_middle.json.jbuilder (0.5ms)
+  [1m[36mCACHE Starter Load (0.0ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered api/middles/_middle.json.jbuilder (0.6ms)
+  [1m[36mStarter Load (0.2ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered api/middles/_middle.json.jbuilder (0.9ms)
+  [1m[36mCACHE Starter Load (0.0ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered api/middles/_middle.json.jbuilder (0.6ms)
+  Rendered api/middles/index.json.jbuilder (33.0ms)
+Completed 200 OK in 44ms (Views: 32.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/starter" for 127.0.0.1 at 2018-04-25 22:21:53 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/api/starter"):
+  
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.6.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.1) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.1) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.1) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.11.4) lib/puma/configuration.rb:225:in `call'
+puma (3.11.4) lib/puma/server.rb:632:in `handle_request'
+puma (3.11.4) lib/puma/server.rb:446:in `process_client'
+puma (3.11.4) lib/puma/server.rb:306:in `block in run'
+puma (3.11.4) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/api/starters" for 127.0.0.1 at 2018-04-25 22:21:58 -0700
+Processing by Api::StartersController#index as JSON
+  Rendering api/starters/index.json.jbuilder
+  [1m[36mStarter Load (0.3ms)[0m  [1m[34mSELECT "starters".* FROM "starters"[0m
+  Rendered api/starters/_starter.json.jbuilder (0.2ms)
+  Rendered api/starters/_starter.json.jbuilder (0.0ms)
+  Rendered api/starters/_starter.json.jbuilder (0.0ms)
+  Rendered api/starters/_starter.json.jbuilder (0.0ms)
+  Rendered api/starters/_starter.json.jbuilder (0.0ms)
+  Rendered api/starters/_starter.json.jbuilder (0.0ms)
+  Rendered api/starters/_starter.json.jbuilder (0.0ms)
+  Rendered api/starters/_starter.json.jbuilder (0.0ms)
+  Rendered api/starters/index.json.jbuilder (4.0ms)
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/starters" for 127.0.0.1 at 2018-04-25 22:22:52 -0700
+Processing by Api::StartersController#index as JSON
+  Rendering api/starters/index.json.jbuilder
+  [1m[36mStarter Load (0.3ms)[0m  [1m[34mSELECT "starters".* FROM "starters"[0m
+  Rendered api/starters/_starter.json.jbuilder (1.4ms)
+  Rendered api/starters/_starter.json.jbuilder (0.1ms)
+  Rendered api/starters/_starter.json.jbuilder (0.0ms)
+  Rendered api/starters/_starter.json.jbuilder (0.0ms)
+  Rendered api/starters/_starter.json.jbuilder (0.1ms)
+  Rendered api/starters/_starter.json.jbuilder (0.0ms)
+  Rendered api/starters/_starter.json.jbuilder (0.1ms)
+  Rendered api/starters/_starter.json.jbuilder (0.0ms)
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT "middles".* FROM "middles" WHERE "middles"."starter_id" = $1[0m  [["starter_id", 1]]
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT "middles".* FROM "middles" WHERE "middles"."starter_id" = $1[0m  [["starter_id", 2]]
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT "middles".* FROM "middles" WHERE "middles"."starter_id" = $1[0m  [["starter_id", 3]]
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT "middles".* FROM "middles" WHERE "middles"."starter_id" = $1[0m  [["starter_id", 4]]
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT "middles".* FROM "middles" WHERE "middles"."starter_id" = $1[0m  [["starter_id", 5]]
+  [1m[36mMiddle Load (0.1ms)[0m  [1m[34mSELECT "middles".* FROM "middles" WHERE "middles"."starter_id" = $1[0m  [["starter_id", 6]]
+  [1m[36mMiddle Load (0.1ms)[0m  [1m[34mSELECT "middles".* FROM "middles" WHERE "middles"."starter_id" = $1[0m  [["starter_id", 7]]
+  [1m[36mMiddle Load (0.1ms)[0m  [1m[34mSELECT "middles".* FROM "middles" WHERE "middles"."starter_id" = $1[0m  [["starter_id", 8]]
+  Rendered api/starters/index.json.jbuilder (13.8ms)
+Completed 200 OK in 16ms (Views: 13.4ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/finishers" for 127.0.0.1 at 2018-04-25 22:23:05 -0700
+Processing by Api::FinishersController#index as JSON
+  [1m[36mSetting Load (0.1ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+Completed 404 Not Found in 11ms (ActiveRecord: 2.5ms)
+
+
+
+ActiveRecord::RecordNotFound - Couldn't find Setting with 'id'=:
+  app/controllers/api/finishers_controller.rb:3:in `index'
+
+Started POST "/__better_errors/8d8d85ecea0190dd/variables" for 127.0.0.1 at 2018-04-25 22:23:05 -0700
+Started GET "/api/finishers/1" for 127.0.0.1 at 2018-04-25 22:23:35 -0700
+Processing by Api::FinishersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mFinisher Load (0.3ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/finishers/show.json.jbuilder
+  Rendered api/finishers/_finisher.json.jbuilder (0.2ms)
+  Rendered api/finishers/show.json.jbuilder (0.9ms)
+Completed 200 OK in 19ms (Views: 2.5ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/api/finishers/" for 127.0.0.1 at 2018-04-25 22:26:32 -0700
+Processing by Api::FinishersController#index as JSON
+  Rendering api/finishers/index.json.jbuilder
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT "finishers".* FROM "finishers"[0m
+  [1m[36mMiddle Load (0.3ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  Rendered api/finishers/_finisher.json.jbuilder (10.2ms)
+  [1m[36mCACHE Middle Load (0.0ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  Rendered api/finishers/_finisher.json.jbuilder (0.7ms)
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  Rendered api/finishers/_finisher.json.jbuilder (0.8ms)
+  [1m[36mCACHE Middle Load (0.0ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  Rendered api/finishers/_finisher.json.jbuilder (0.5ms)
+  [1m[36mCACHE Middle Load (0.0ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  Rendered api/finishers/_finisher.json.jbuilder (0.5ms)
+  Rendered api/finishers/index.json.jbuilder (23.0ms)
+Completed 200 OK in 28ms (Views: 23.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/settings" for 127.0.0.1 at 2018-04-25 22:27:04 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/api/settings"):
+  
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.6.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.1) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.1) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.1) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.11.4) lib/puma/configuration.rb:225:in `call'
+puma (3.11.4) lib/puma/server.rb:632:in `handle_request'
+puma (3.11.4) lib/puma/server.rb:446:in `process_client'
+puma (3.11.4) lib/puma/server.rb:306:in `block in run'
+puma (3.11.4) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/api/settings/1" for 127.0.0.1 at 2018-04-25 22:27:08 -0700
+Processing by Api::SettingsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSetting Load (0.1ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/settings/show.json.jbuilder
+  [1m[36mFinisher Load (0.3ms)[0m  [1m[34mSELECT "finishers".* FROM "finishers" INNER JOIN "setting_memberships" ON "finishers"."id" = "setting_memberships"."finisher_id" WHERE "setting_memberships"."setting_id" = $1[0m  [["setting_id", 1]]
+  Rendered api/settings/show.json.jbuilder (20.5ms)
+Completed 200 OK in 41ms (Views: 21.9ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-04-25 22:27:30 -0700
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/dondake/.rbenv/versions/2.3.0-dev/lib/ruby/gems/2.6.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/dondake/.rbenv/versions/2.3.0-dev/lib/ruby/gems/2.6.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb (2.1ms)
+Completed 200 OK in 5ms (Views: 3.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/settings/1" for 127.0.0.1 at 2018-04-25 22:27:37 -0700
+Processing by Api::SettingsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSetting Load (0.3ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/settings/show.json.jbuilder
+  [1m[36mFinisher Load (0.4ms)[0m  [1m[34mSELECT "finishers".* FROM "finishers" INNER JOIN "setting_memberships" ON "finishers"."id" = "setting_memberships"."finisher_id" WHERE "setting_memberships"."setting_id" = $1[0m  [["setting_id", 1]]
+  Rendered api/settings/show.json.jbuilder (2.8ms)
+Completed 200 OK in 6ms (Views: 3.6ms | ActiveRecord: 0.7ms)
+
+
