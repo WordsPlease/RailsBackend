@@ -1,6 +1,6 @@
 class Api::MiddlesController < ApplicationController
   def index
-    @middles = Middle.where(starter_id: params[:starter_id])
+    @middles = Middle.all
   end
 
   def show
