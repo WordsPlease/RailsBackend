@@ -1,1 +1,1 @@
-json.extract! starter, :id, :title, :is_last, :image_path
+json.extract! starter, :id, :title, :is_last, :image_path, :middles
