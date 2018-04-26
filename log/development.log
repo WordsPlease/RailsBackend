@@ -1022,3 +1022,210 @@ Processing by Api::SettingsController#show as JSON
 Completed 200 OK in 42ms (Views: 3.4ms | ActiveRecord: 9.1ms)
 
 
+Started GET "/" for 192.168.2.88 at 2018-04-25 11:45:11 -0700
+Cannot render console from 192.168.2.88! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /var/lib/gems/2.3.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /var/lib/gems/2.3.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb (11.1ms)
+Completed 200 OK in 17ms (Views: 14.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/settings/1" for 192.168.2.88 at 2018-04-25 11:46:50 -0700
+Cannot render console from 192.168.2.88! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Api::SettingsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/settings/show.json.jbuilder
+  Rendered api/settings/show.json.jbuilder (0.5ms)
+Completed 200 OK in 4ms (Views: 2.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/settings" for 192.168.0.61 at 2018-04-25 11:48:41 -0700
+Cannot render console from 192.168.0.61! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [GET] "/api/settings"):
+  
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.6.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.1) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.6.1) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.1) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.11.4) lib/puma/configuration.rb:225:in `call'
+puma (3.11.4) lib/puma/server.rb:632:in `handle_request'
+puma (3.11.4) lib/puma/server.rb:446:in `process_client'
+puma (3.11.4) lib/puma/server.rb:306:in `block in run'
+puma (3.11.4) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/api/settings/1" for 192.168.0.61 at 2018-04-25 11:48:46 -0700
+Cannot render console from 192.168.0.61! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Api::SettingsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSetting Load (0.3ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/settings/show.json.jbuilder
+  Rendered api/settings/show.json.jbuilder (0.5ms)
+Completed 200 OK in 4ms (Views: 2.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/settings/1" for 192.168.0.61 at 2018-04-25 17:09:22 -0700
+Cannot render console from 192.168.0.61! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Api::SettingsController#show as JSON
+  Parameters: {"id"=>"1", "setting"=>{}}
+  [1m[36mSetting Load (0.3ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/settings/show.json.jbuilder
+  Rendered api/settings/show.json.jbuilder (0.4ms)
+Completed 200 OK in 3ms (Views: 1.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/settings/1" for 192.168.0.61 at 2018-04-25 17:10:12 -0700
+Cannot render console from 192.168.0.61! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Api::SettingsController#show as JSON
+  Parameters: {"id"=>"1", "setting"=>{}}
+  [1m[36mSetting Load (0.7ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/settings/show.json.jbuilder
+  Rendered api/settings/show.json.jbuilder (1.1ms)
+Completed 200 OK in 11ms (Views: 6.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/settings/1" for 192.168.0.61 at 2018-04-25 17:16:43 -0700
+Cannot render console from 192.168.0.61! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Api::SettingsController#show as JSON
+  Parameters: {"id"=>"1", "setting"=>{}}
+  [1m[36mSetting Load (0.4ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/settings/show.json.jbuilder
+  Rendered api/settings/show.json.jbuilder (0.4ms)
+Completed 200 OK in 4ms (Views: 2.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/settings/1" for 192.168.0.61 at 2018-04-25 17:36:39 -0700
+Cannot render console from 192.168.0.61! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Api::SettingsController#show as JSON
+  Parameters: {"id"=>"1", "setting"=>{}}
+  [1m[36mSetting Load (0.3ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/settings/show.json.jbuilder
+  Rendered api/settings/show.json.jbuilder (0.4ms)
+Completed 200 OK in 4ms (Views: 1.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/settings/1" for 192.168.0.61 at 2018-04-25 17:36:55 -0700
+Cannot render console from 192.168.0.61! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Api::SettingsController#show as JSON
+  Parameters: {"id"=>"1", "setting"=>{}}
+  [1m[36mSetting Load (0.3ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/settings/show.json.jbuilder
+  Rendered api/settings/show.json.jbuilder (0.4ms)
+Completed 200 OK in 4ms (Views: 1.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/settings/1" for 192.168.0.61 at 2018-04-25 17:38:00 -0700
+Cannot render console from 192.168.0.61! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Api::SettingsController#show as JSON
+  Parameters: {"id"=>"1", "setting"=>{}}
+  [1m[36mSetting Load (0.6ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/settings/show.json.jbuilder
+  Rendered api/settings/show.json.jbuilder (0.5ms)
+Completed 200 OK in 9ms (Views: 4.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 192.168.2.176 at 2018-04-26 09:34:00 -0700
+Cannot render console from 192.168.2.176! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (28.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /var/lib/gems/2.3.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /var/lib/gems/2.3.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb (15.5ms)
+Completed 200 OK in 54ms (Views: 20.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/middles" for 192.168.2.176 at 2018-04-26 09:34:07 -0700
+Cannot render console from 192.168.2.176! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Api::MiddlesController#index as JSON
+  Rendering api/middles/index.json.jbuilder
+  [1m[36mMiddle Load (49.8ms)[0m  [1m[34mSELECT "middles".* FROM "middles"[0m
+  Rendered api/middles/_middle.json.jbuilder (0.9ms)
+  Rendered api/middles/_middle.json.jbuilder (0.2ms)
+  Rendered api/middles/_middle.json.jbuilder (0.1ms)
+  Rendered api/middles/_middle.json.jbuilder (0.1ms)
+  Rendered api/middles/_middle.json.jbuilder (0.1ms)
+  Rendered api/middles/_middle.json.jbuilder (0.2ms)
+  Rendered api/middles/_middle.json.jbuilder (0.2ms)
+  Rendered api/middles/_middle.json.jbuilder (0.2ms)
+  Rendered api/middles/_middle.json.jbuilder (0.2ms)
+  Rendered api/middles/_middle.json.jbuilder (0.1ms)
+  Rendered api/middles/_middle.json.jbuilder (0.2ms)
+  Rendered api/middles/_middle.json.jbuilder (0.2ms)
+  Rendered api/middles/_middle.json.jbuilder (0.2ms)
+  Rendered api/middles/_middle.json.jbuilder (0.2ms)
+  Rendered api/middles/index.json.jbuilder (158.0ms)
+Completed 200 OK in 190ms (Views: 81.6ms | ActiveRecord: 78.7ms)
+
+
+Started GET "/api/finishers" for 192.168.2.176 at 2018-04-26 09:34:15 -0700
+Cannot render console from 192.168.2.176! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Api::FinishersController#index as JSON
+  [1m[36mSetting Load (1.3ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+Completed 404 Not Found in 44ms (ActiveRecord: 5.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Setting with 'id'=):
+  
+app/controllers/api/finishers_controller.rb:3:in `index'
+Started GET "/api/finisher" for 192.168.2.176 at 2018-04-26 09:34:19 -0700
+Cannot render console from 192.168.2.176! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [GET] "/api/finisher"):
+  
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.6.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.1) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.6.1) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.1) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.11.4) lib/puma/configuration.rb:225:in `call'
+puma (3.11.4) lib/puma/server.rb:632:in `handle_request'
+puma (3.11.4) lib/puma/server.rb:446:in `process_client'
+puma (3.11.4) lib/puma/server.rb:306:in `block in run'
+puma (3.11.4) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/api/finishers/?middle_id=14&setting_id=1" for 127.0.0.1 at 2018-04-26 09:35:27 -0700
+Processing by Api::FinishersController#index as JSON
+  Parameters: {"middle_id"=>"14", "setting_id"=>"1"}
+  [1m[36mSetting Load (1.0ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/finishers/index.json.jbuilder
+  [1m[36mFinisher Load (45.0ms)[0m  [1m[34mSELECT "finishers".* FROM "finishers" INNER JOIN "setting_memberships" ON "finishers"."id" = "setting_memberships"."finisher_id" WHERE "setting_memberships"."setting_id" = $1 AND "finishers"."middle_id" = $2[0m  [["setting_id", 1], ["middle_id", 14]]
+  Rendered api/finishers/_finisher.json.jbuilder (1.3ms)
+  Rendered api/finishers/_finisher.json.jbuilder (0.2ms)
+  Rendered api/finishers/index.json.jbuilder (168.4ms)
+Completed 200 OK in 450ms (Views: 129.2ms | ActiveRecord: 57.9ms)
+
+
