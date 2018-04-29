@@ -1288,3 +1288,620 @@ Processing by Api::MiddlesController#index as JSON
 Completed 200 OK in 33ms (Views: 13.2ms | ActiveRecord: 4.1ms)
 
 
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4093412356168914870)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateSettings (20180423183520)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE TABLE "settings" ("id" bigserial primary key, "title" character varying NOT NULL, "image_path" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180423183520"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateStarters (20180423183747)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE TABLE "starters" ("id" bigserial primary key, "title" character varying NOT NULL, "is_last" character varying NOT NULL, "image_path" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180423183747"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateMiddles (20180423184855)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (40.0ms)[0m  [1m[35mCREATE TABLE "middles" ("id" bigserial primary key, "title" character varying NOT NULL, "is_last" character varying NOT NULL, "image_path" character varying, "starter_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180423184855"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateFinishers (20180423185137)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE TABLE "finishers" ("id" bigserial primary key, "title" character varying NOT NULL, "is_last" character varying NOT NULL, "image_path" character varying, "setting_memberships_id" integer NOT NULL, "middle_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180423185137"]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateSettingMemberships (20180423185445)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE TABLE "setting_memberships" ("id" bigserial primary key, "setting_id" integer NOT NULL, "finisher_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180423185445"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to DeleteMembershipsColumn (20180424002056)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "finishers" DROP "setting_memberships_id"[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180424002056"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-04-29 22:58:44.640297"], ["updated_at", "2018-04-29 22:58:44.640297"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(4093412356168914870)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "settings" WHERE "settings"."title" = $1 LIMIT $2[0m  [["title", "classroom"], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "settings" ("title", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "classroom"], ["image_path", "classroom"], ["created_at", "2018-04-29 22:58:53.039020"], ["updated_at", "2018-04-29 22:58:53.039020"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Exists (12.3ms)[0m  [1m[34mSELECT  1 AS one FROM "settings" WHERE "settings"."title" = $1 LIMIT $2[0m  [["title", "playground"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "settings" ("title", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "playground"], ["image_path", "playground"], ["created_at", "2018-04-29 22:58:53.055111"], ["updated_at", "2018-04-29 22:58:53.055111"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "I feel"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "starters" ("title", "is_last", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "I feel"], ["is_last", "f"], ["image_path", "feel"], ["created_at", "2018-04-29 22:58:53.071597"], ["updated_at", "2018-04-29 22:58:53.071597"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "I want"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "starters" ("title", "is_last", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "I want"], ["is_last", "f"], ["image_path", "want"], ["created_at", "2018-04-29 22:58:53.075070"], ["updated_at", "2018-04-29 22:58:53.075070"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "Yes"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "starters" ("title", "is_last", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Yes"], ["is_last", "t"], ["image_path", "yes"], ["created_at", "2018-04-29 22:58:53.078200"], ["updated_at", "2018-04-29 22:58:53.078200"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "No"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "starters" ("title", "is_last", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "No"], ["is_last", "t"], ["image_path", "no"], ["created_at", "2018-04-29 22:58:53.081285"], ["updated_at", "2018-04-29 22:58:53.081285"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "Thank You"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "starters" ("title", "is_last", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Thank You"], ["is_last", "t"], ["image_path", "thanks"], ["created_at", "2018-04-29 22:58:53.084565"], ["updated_at", "2018-04-29 22:58:53.084565"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "Help"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "starters" ("title", "is_last", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Help"], ["is_last", "t"], ["image_path", "help"], ["created_at", "2018-04-29 22:58:53.087621"], ["updated_at", "2018-04-29 22:58:53.087621"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "Stop"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "starters" ("title", "is_last", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Stop"], ["is_last", "t"], ["image_path", "stop"], ["created_at", "2018-04-29 22:58:53.090806"], ["updated_at", "2018-04-29 22:58:53.090806"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStarter Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "starters" WHERE "starters"."title" = $1 LIMIT $2[0m  [["title", "I don't know"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "starters" ("title", "is_last", "image_path", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "I don't know"], ["is_last", "t"], ["image_path", "dunno"], ["created_at", "2018-04-29 22:58:53.093942"], ["updated_at", "2018-04-29 22:58:53.093942"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "happy"], ["LIMIT", 1]]
+  [1m[36mStarter Load (8.7ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "happy"], ["is_last", "t"], ["image_path", "happy"], ["starter_id", 1], ["created_at", "2018-04-29 22:58:53.137527"], ["updated_at", "2018-04-29 22:58:53.137527"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "sad"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.4ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "sad"], ["is_last", "t"], ["image_path", "sad"], ["starter_id", 1], ["created_at", "2018-04-29 22:58:53.142600"], ["updated_at", "2018-04-29 22:58:53.142600"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "mad"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.4ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "mad"], ["is_last", "t"], ["image_path", "mad"], ["starter_id", 1], ["created_at", "2018-04-29 22:58:53.146820"], ["updated_at", "2018-04-29 22:58:53.146820"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "sleepy"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.4ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "sleepy"], ["is_last", "t"], ["image_path", "sleepy"], ["starter_id", 1], ["created_at", "2018-04-29 22:58:53.151389"], ["updated_at", "2018-04-29 22:58:53.151389"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "hot"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.4ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "hot"], ["is_last", "t"], ["image_path", "hot"], ["starter_id", 1], ["created_at", "2018-04-29 22:58:53.155776"], ["updated_at", "2018-04-29 22:58:53.155776"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "cold"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.4ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "cold"], ["is_last", "t"], ["image_path", "cold"], ["starter_id", 1], ["created_at", "2018-04-29 22:58:53.160254"], ["updated_at", "2018-04-29 22:58:53.160254"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "scared"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.4ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "scared"], ["is_last", "t"], ["image_path", "scared"], ["starter_id", 1], ["created_at", "2018-04-29 22:58:53.164573"], ["updated_at", "2018-04-29 22:58:53.164573"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "hurt"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.4ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "hurt"], ["is_last", "t"], ["image_path", "hurt"], ["starter_id", 1], ["created_at", "2018-04-29 22:58:53.169054"], ["updated_at", "2018-04-29 22:58:53.169054"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "to play"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.4ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "to play"], ["is_last", "f"], ["image_path", "play"], ["starter_id", 2], ["created_at", "2018-04-29 22:58:53.173592"], ["updated_at", "2018-04-29 22:58:53.173592"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "to read"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.4ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "to read"], ["is_last", "f"], ["image_path", "read"], ["starter_id", 2], ["created_at", "2018-04-29 22:58:53.177952"], ["updated_at", "2018-04-29 22:58:53.177952"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "to draw"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.4ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "to draw"], ["is_last", "f"], ["image_path", "draw"], ["starter_id", 2], ["created_at", "2018-04-29 22:58:53.182436"], ["updated_at", "2018-04-29 22:58:53.182436"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "to go"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.4ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "to go"], ["is_last", "f"], ["image_path", "go"], ["starter_id", 2], ["created_at", "2018-04-29 22:58:53.186800"], ["updated_at", "2018-04-29 22:58:53.186800"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "to eat"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.4ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "to eat"], ["is_last", "f"], ["image_path", "eat"], ["starter_id", 2], ["created_at", "2018-04-29 22:58:53.191355"], ["updated_at", "2018-04-29 22:58:53.191355"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "middles" WHERE "middles"."title" = $1 LIMIT $2[0m  [["title", "to drink"], ["LIMIT", 1]]
+  [1m[36mStarter Load (0.4ms)[0m  [1m[34mSELECT  "starters".* FROM "starters" WHERE "starters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "middles" ("title", "is_last", "image_path", "starter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "to drink"], ["is_last", "f"], ["image_path", "drink"], ["starter_id", 2], ["created_at", "2018-04-29 22:58:53.195853"], ["updated_at", "2018-04-29 22:58:53.195853"]]
+  [1m[35m (16.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.4ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "an apple"], ["is_last", "t"], ["image_path", "apple"], ["middle_id", 13], ["created_at", "2018-04-29 22:58:53.234968"], ["updated_at", "2018-04-29 22:58:53.234968"]]
+  [1m[35m (11.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.3ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "carrots"], ["is_last", "t"], ["image_path", "carrots"], ["middle_id", 13], ["created_at", "2018-04-29 22:58:53.250146"], ["updated_at", "2018-04-29 22:58:53.250146"]]
+  [1m[35m (8.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.4ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "grapes"], ["is_last", "t"], ["image_path", "grapes"], ["middle_id", 13], ["created_at", "2018-04-29 22:58:53.261705"], ["updated_at", "2018-04-29 22:58:53.261705"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.3ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "a banana"], ["is_last", "t"], ["image_path", "banana"], ["middle_id", 13], ["created_at", "2018-04-29 22:58:53.265446"], ["updated_at", "2018-04-29 22:58:53.265446"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.3ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "yogurt"], ["is_last", "t"], ["image_path", "yogurt"], ["middle_id", 13], ["created_at", "2018-04-29 22:58:53.268883"], ["updated_at", "2018-04-29 22:58:53.268883"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.3ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "a bagel"], ["is_last", "t"], ["image_path", "bagel"], ["middle_id", 13], ["created_at", "2018-04-29 22:58:53.272526"], ["updated_at", "2018-04-29 22:58:53.272526"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "crackers"], ["is_last", "t"], ["image_path", "crackers"], ["middle_id", 13], ["created_at", "2018-04-29 22:58:53.276108"], ["updated_at", "2018-04-29 22:58:53.276108"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "breakfast"], ["is_last", "t"], ["image_path", "breakfast"], ["middle_id", 13], ["created_at", "2018-04-29 22:58:53.279697"], ["updated_at", "2018-04-29 22:58:53.279697"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.3ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "with blocks"], ["is_last", "t"], ["image_path", "blocks"], ["middle_id", 9], ["created_at", "2018-04-29 22:58:53.283180"], ["updated_at", "2018-04-29 22:58:53.283180"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "with sand"], ["is_last", "t"], ["image_path", "sand"], ["middle_id", 9], ["created_at", "2018-04-29 22:58:53.286675"], ["updated_at", "2018-04-29 22:58:53.286675"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "tag"], ["is_last", "t"], ["image_path", "tag"], ["middle_id", 9], ["created_at", "2018-04-29 22:58:53.289910"], ["updated_at", "2018-04-29 22:58:53.289910"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "with playdough"], ["is_last", "t"], ["image_path", "playdough"], ["middle_id", 9], ["created_at", "2018-04-29 22:58:53.293386"], ["updated_at", "2018-04-29 22:58:53.293386"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "in the kitchen"], ["is_last", "t"], ["image_path", "kitchen"], ["middle_id", 9], ["created_at", "2018-04-29 22:58:53.296998"], ["updated_at", "2018-04-29 22:58:53.296998"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "with friends"], ["is_last", "t"], ["image_path", "friends"], ["middle_id", 9], ["created_at", "2018-04-29 22:58:53.300481"], ["updated_at", "2018-04-29 22:58:53.300481"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "with toys"], ["is_last", "t"], ["image_path", "toys"], ["middle_id", 9], ["created_at", "2018-04-29 22:58:53.303749"], ["updated_at", "2018-04-29 22:58:53.303749"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "on the slide"], ["is_last", "t"], ["image_path", "slide"], ["middle_id", 9], ["created_at", "2018-04-29 22:58:53.307019"], ["updated_at", "2018-04-29 22:58:53.307019"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "on the swings"], ["is_last", "t"], ["image_path", "swings"], ["middle_id", 9], ["created_at", "2018-04-29 22:58:53.310481"], ["updated_at", "2018-04-29 22:58:53.310481"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "on the see-saww"], ["is_last", "t"], ["image_path", "see-saww"], ["middle_id", 9], ["created_at", "2018-04-29 22:58:53.313691"], ["updated_at", "2018-04-29 22:58:53.313691"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "on the grass"], ["is_last", "t"], ["image_path", "grass"], ["middle_id", 9], ["created_at", "2018-04-29 22:58:53.316983"], ["updated_at", "2018-04-29 22:58:53.316983"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "alone"], ["is_last", "t"], ["image_path", "alone"], ["middle_id", 10], ["created_at", "2018-04-29 22:58:53.320269"], ["updated_at", "2018-04-29 22:58:53.320269"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "with someone"], ["is_last", "t"], ["image_path", "someone"], ["middle_id", 10], ["created_at", "2018-04-29 22:58:53.323696"], ["updated_at", "2018-04-29 22:58:53.323696"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "with crayons"], ["is_last", "t"], ["image_path", "crayons"], ["middle_id", 11], ["created_at", "2018-04-29 22:58:53.327168"], ["updated_at", "2018-04-29 22:58:53.327168"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "with paint"], ["is_last", "t"], ["image_path", "paint"], ["middle_id", 11], ["created_at", "2018-04-29 22:58:53.330488"], ["updated_at", "2018-04-29 22:58:53.330488"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "with markers"], ["is_last", "t"], ["image_path", "markers"], ["middle_id", 11], ["created_at", "2018-04-29 22:58:53.333773"], ["updated_at", "2018-04-29 22:58:53.333773"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "with chalk"], ["is_last", "t"], ["image_path", "chalk"], ["middle_id", 11], ["created_at", "2018-04-29 22:58:53.337110"], ["updated_at", "2018-04-29 22:58:53.337110"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "on the iPad"], ["is_last", "t"], ["image_path", "iPad"], ["middle_id", 11], ["created_at", "2018-04-29 22:58:53.340458"], ["updated_at", "2018-04-29 22:58:53.340458"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "on whiteboard"], ["is_last", "t"], ["image_path", "whiteboard"], ["middle_id", 11], ["created_at", "2018-04-29 22:58:53.343780"], ["updated_at", "2018-04-29 22:58:53.343780"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "in a coloring book"], ["is_last", "t"], ["image_path", "coloringbook"], ["middle_id", 11], ["created_at", "2018-04-29 22:58:53.347122"], ["updated_at", "2018-04-29 22:58:53.347122"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "outside"], ["is_last", "t"], ["image_path", "outside"], ["middle_id", 12], ["created_at", "2018-04-29 22:58:53.350472"], ["updated_at", "2018-04-29 22:58:53.350472"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "inside"], ["is_last", "t"], ["image_path", "inside"], ["middle_id", 12], ["created_at", "2018-04-29 22:58:53.353796"], ["updated_at", "2018-04-29 22:58:53.353796"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "to the bathroom"], ["is_last", "t"], ["image_path", "bathroom"], ["middle_id", 12], ["created_at", "2018-04-29 22:58:53.357173"], ["updated_at", "2018-04-29 22:58:53.357173"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.3ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "to sleep"], ["is_last", "t"], ["image_path", "sleep"], ["middle_id", 12], ["created_at", "2018-04-29 22:58:53.360546"], ["updated_at", "2018-04-29 22:58:53.360546"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "home"], ["is_last", "t"], ["image_path", "home"], ["middle_id", 12], ["created_at", "2018-04-29 22:58:53.363824"], ["updated_at", "2018-04-29 22:58:53.363824"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "water"], ["is_last", "t"], ["image_path", "water"], ["middle_id", 14], ["created_at", "2018-04-29 22:58:53.367102"], ["updated_at", "2018-04-29 22:58:53.367102"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "milk"], ["is_last", "t"], ["image_path", "milk"], ["middle_id", 14], ["created_at", "2018-04-29 22:58:53.370484"], ["updated_at", "2018-04-29 22:58:53.370484"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMiddle Load (0.2ms)[0m  [1m[34mSELECT  "middles".* FROM "middles" WHERE "middles"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "finishers" ("title", "is_last", "image_path", "middle_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "juice"], ["is_last", "t"], ["image_path", "juice"], ["middle_id", 14], ["created_at", "2018-04-29 22:58:53.373910"], ["updated_at", "2018-04-29 22:58:53.373910"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.4ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.4ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 1], ["created_at", "2018-04-29 22:58:53.394281"], ["updated_at", "2018-04-29 22:58:53.394281"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.3ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.3ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 2], ["created_at", "2018-04-29 22:58:53.399356"], ["updated_at", "2018-04-29 22:58:53.399356"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.3ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.3ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 3], ["created_at", "2018-04-29 22:58:53.404003"], ["updated_at", "2018-04-29 22:58:53.404003"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.3ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.3ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 4], ["created_at", "2018-04-29 22:58:53.408457"], ["updated_at", "2018-04-29 22:58:53.408457"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.3ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.3ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 5], ["created_at", "2018-04-29 22:58:53.413013"], ["updated_at", "2018-04-29 22:58:53.413013"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.3ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.3ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 6], ["created_at", "2018-04-29 22:58:53.417667"], ["updated_at", "2018-04-29 22:58:53.417667"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 7], ["created_at", "2018-04-29 22:58:53.427967"], ["updated_at", "2018-04-29 22:58:53.427967"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 8], ["created_at", "2018-04-29 22:58:53.432171"], ["updated_at", "2018-04-29 22:58:53.432171"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 1], ["created_at", "2018-04-29 22:58:53.436362"], ["updated_at", "2018-04-29 22:58:53.436362"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 2], ["created_at", "2018-04-29 22:58:53.440392"], ["updated_at", "2018-04-29 22:58:53.440392"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 3], ["created_at", "2018-04-29 22:58:53.444375"], ["updated_at", "2018-04-29 22:58:53.444375"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 4], ["created_at", "2018-04-29 22:58:53.448462"], ["updated_at", "2018-04-29 22:58:53.448462"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 5], ["created_at", "2018-04-29 22:58:53.452454"], ["updated_at", "2018-04-29 22:58:53.452454"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 6], ["created_at", "2018-04-29 22:58:53.456535"], ["updated_at", "2018-04-29 22:58:53.456535"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 7], ["created_at", "2018-04-29 22:58:53.460514"], ["updated_at", "2018-04-29 22:58:53.460514"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 8], ["created_at", "2018-04-29 22:58:53.464426"], ["updated_at", "2018-04-29 22:58:53.464426"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 9], ["created_at", "2018-04-29 22:58:53.468364"], ["updated_at", "2018-04-29 22:58:53.468364"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 10], ["created_at", "2018-04-29 22:58:53.472441"], ["updated_at", "2018-04-29 22:58:53.472441"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 12], ["created_at", "2018-04-29 22:58:53.476442"], ["updated_at", "2018-04-29 22:58:53.476442"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 13], ["created_at", "2018-04-29 22:58:53.480356"], ["updated_at", "2018-04-29 22:58:53.480356"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 14], ["created_at", "2018-04-29 22:58:53.484306"], ["updated_at", "2018-04-29 22:58:53.484306"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 14], ["created_at", "2018-04-29 22:58:53.488407"], ["updated_at", "2018-04-29 22:58:53.488407"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 15], ["created_at", "2018-04-29 22:58:53.492558"], ["updated_at", "2018-04-29 22:58:53.492558"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 11], ["created_at", "2018-04-29 22:58:53.497254"], ["updated_at", "2018-04-29 22:58:53.497254"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 16], ["created_at", "2018-04-29 22:58:53.501398"], ["updated_at", "2018-04-29 22:58:53.501398"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 17], ["created_at", "2018-04-29 22:58:53.505356"], ["updated_at", "2018-04-29 22:58:53.505356"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 18], ["created_at", "2018-04-29 22:58:53.509240"], ["updated_at", "2018-04-29 22:58:53.509240"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 19], ["created_at", "2018-04-29 22:58:53.513202"], ["updated_at", "2018-04-29 22:58:53.513202"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 20], ["created_at", "2018-04-29 22:58:53.517153"], ["updated_at", "2018-04-29 22:58:53.517153"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 20], ["created_at", "2018-04-29 22:58:53.520992"], ["updated_at", "2018-04-29 22:58:53.520992"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 21], ["created_at", "2018-04-29 22:58:53.524976"], ["updated_at", "2018-04-29 22:58:53.524976"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 21], ["created_at", "2018-04-29 22:58:53.528926"], ["updated_at", "2018-04-29 22:58:53.528926"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 22], ["created_at", "2018-04-29 22:58:53.532888"], ["updated_at", "2018-04-29 22:58:53.532888"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 23], ["created_at", "2018-04-29 22:58:53.536898"], ["updated_at", "2018-04-29 22:58:53.536898"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 24], ["created_at", "2018-04-29 22:58:53.541019"], ["updated_at", "2018-04-29 22:58:53.541019"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 26], ["created_at", "2018-04-29 22:58:53.545011"], ["updated_at", "2018-04-29 22:58:53.545011"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 26], ["created_at", "2018-04-29 22:58:53.549152"], ["updated_at", "2018-04-29 22:58:53.549152"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 27], ["created_at", "2018-04-29 22:58:53.553188"], ["updated_at", "2018-04-29 22:58:53.553188"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 28], ["created_at", "2018-04-29 22:58:53.557190"], ["updated_at", "2018-04-29 22:58:53.557190"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 28], ["created_at", "2018-04-29 22:58:53.561322"], ["updated_at", "2018-04-29 22:58:53.561322"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 25], ["created_at", "2018-04-29 22:58:53.565269"], ["updated_at", "2018-04-29 22:58:53.565269"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 29], ["created_at", "2018-04-29 22:58:53.569284"], ["updated_at", "2018-04-29 22:58:53.569284"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 30], ["created_at", "2018-04-29 22:58:53.573294"], ["updated_at", "2018-04-29 22:58:53.573294"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 31], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 31], ["created_at", "2018-04-29 22:58:53.577472"], ["updated_at", "2018-04-29 22:58:53.577472"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 31], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 31], ["created_at", "2018-04-29 22:58:53.581526"], ["updated_at", "2018-04-29 22:58:53.581526"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.3ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.3ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 32], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 32], ["created_at", "2018-04-29 22:58:53.586868"], ["updated_at", "2018-04-29 22:58:53.586868"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 33], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 33], ["created_at", "2018-04-29 22:58:53.591208"], ["updated_at", "2018-04-29 22:58:53.591208"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 33], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 33], ["created_at", "2018-04-29 22:58:53.595332"], ["updated_at", "2018-04-29 22:58:53.595332"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 34], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 34], ["created_at", "2018-04-29 22:58:53.599365"], ["updated_at", "2018-04-29 22:58:53.599365"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 34], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 34], ["created_at", "2018-04-29 22:58:53.603532"], ["updated_at", "2018-04-29 22:58:53.603532"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 35], ["created_at", "2018-04-29 22:58:53.607698"], ["updated_at", "2018-04-29 22:58:53.607698"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 35], ["created_at", "2018-04-29 22:58:53.611669"], ["updated_at", "2018-04-29 22:58:53.611669"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 36], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 1], ["finisher_id", 36], ["created_at", "2018-04-29 22:58:53.615793"], ["updated_at", "2018-04-29 22:58:53.615793"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSetting Load (0.2ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFinisher Load (0.2ms)[0m  [1m[34mSELECT  "finishers".* FROM "finishers" WHERE "finishers"."id" = $1 LIMIT $2[0m  [["id", 36], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "setting_memberships" ("setting_id", "finisher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["setting_id", 2], ["finisher_id", 36], ["created_at", "2018-04-29 22:58:53.619743"], ["updated_at", "2018-04-29 22:58:53.619743"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSetting Load (0.8ms)[0m  [1m[34mSELECT "settings".* FROM "settings"[0m
+  [1m[36mStarter Load (1.0ms)[0m  [1m[34mSELECT "starters".* FROM "starters"[0m
+  [1m[36mMiddle Load (0.8ms)[0m  [1m[34mSELECT "middles".* FROM "middles"[0m
+  [1m[36mFinisher Load (0.9ms)[0m  [1m[34mSELECT "finishers".* FROM "finishers"[0m
+Started GET "/" for 127.0.0.1 at 2018-04-29 16:00:46 -0700
+  [1m[35m (128.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/var/rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/var/rbenv/versions/2.5.0/lib/ruby/gems/2.5.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb (48.9ms)
+Completed 200 OK in 365ms (Views: 139.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/settings/1" for 127.0.0.1 at 2018-04-29 16:00:59 -0700
+Processing by Api::SettingsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSetting Load (0.6ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/settings/show.json.jbuilder
+  Rendered api/settings/show.json.jbuilder (154.0ms)
+Completed 200 OK in 464ms (Views: 162.1ms | ActiveRecord: 8.1ms)
+
+
+Started GET "/api/finishers?setting_id=1&middle_id=13" for 127.0.0.1 at 2018-04-29 16:02:22 -0700
+Processing by Api::FinishersController#index as JSON
+  Parameters: {"setting_id"=>"1", "middle_id"=>"13"}
+  [1m[36mSetting Load (0.6ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/finishers/index.json.jbuilder
+  [1m[36mFinisher Load (1.5ms)[0m  [1m[34mSELECT "finishers".* FROM "finishers" INNER JOIN "setting_memberships" ON "finishers"."id" = "setting_memberships"."finisher_id" WHERE "setting_memberships"."setting_id" = $1 AND "finishers"."middle_id" = $2[0m  [["setting_id", 1], ["middle_id", 13]]
+  Rendered api/finishers/_finisher.json.jbuilder (0.5ms)
+  Rendered api/finishers/_finisher.json.jbuilder (0.1ms)
+  Rendered api/finishers/_finisher.json.jbuilder (0.1ms)
+  Rendered api/finishers/_finisher.json.jbuilder (0.1ms)
+  Rendered api/finishers/_finisher.json.jbuilder (0.1ms)
+  Rendered api/finishers/_finisher.json.jbuilder (0.1ms)
+  Rendered api/finishers/_finisher.json.jbuilder (0.1ms)
+  Rendered api/finishers/_finisher.json.jbuilder (0.1ms)
+  Rendered api/finishers/index.json.jbuilder (26.1ms)
+Completed 200 OK in 285ms (Views: 32.2ms | ActiveRecord: 10.1ms)
+
+
+Started GET "/api/finishers?setting_id=1&middle_id=14" for 127.0.0.1 at 2018-04-29 16:02:35 -0700
+Processing by Api::FinishersController#index as JSON
+  Parameters: {"setting_id"=>"1", "middle_id"=>"14"}
+  [1m[36mSetting Load (0.4ms)[0m  [1m[34mSELECT  "settings".* FROM "settings" WHERE "settings"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/finishers/index.json.jbuilder
+  [1m[36mFinisher Load (1.4ms)[0m  [1m[34mSELECT "finishers".* FROM "finishers" INNER JOIN "setting_memberships" ON "finishers"."id" = "setting_memberships"."finisher_id" WHERE "setting_memberships"."setting_id" = $1 AND "finishers"."middle_id" = $2[0m  [["setting_id", 1], ["middle_id", 14]]
+  Rendered api/finishers/_finisher.json.jbuilder (0.7ms)
+  Rendered api/finishers/_finisher.json.jbuilder (0.1ms)
+  Rendered api/finishers/_finisher.json.jbuilder (0.1ms)
+  Rendered api/finishers/index.json.jbuilder (8.8ms)
+Completed 200 OK in 31ms (Views: 22.0ms | ActiveRecord: 1.8ms)
+
+
