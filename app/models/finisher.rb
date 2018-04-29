@@ -13,7 +13,6 @@
 
 class Finisher < ApplicationRecord
   validates :title, :is_last, :middle_id, presence: true
-  validates :title, uniqueness: true
 
   has_many :setting_memberships
 

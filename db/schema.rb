@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20180424002056) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "finishers", force: :cascade do |t|
     t.string "title", null: false
     t.string "is_last", null: false
